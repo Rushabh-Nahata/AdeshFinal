@@ -12,7 +12,7 @@ export const forgotPassword = async (dispatch, email) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/password/forgot`,
+      `https://karwadenge-server.onrender.com/api/v1/password/forgot`,
       email,
       config
     );
@@ -43,7 +43,7 @@ export const resetPassword = async (dispatch, token, passwords) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/password/reset/${token}`,
+      `https://karwadenge-server.onrender.com/api/v1/password/reset/${token}`,
       passwords,
       config
     );

@@ -15,10 +15,10 @@ export const getProduct = async (
   ratings = 0
 ) => {
   try {
-    let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+    let link = `https://karwadenge-server.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
     if (category) {
-      link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+      link = `https://karwadenge-server.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
     }
     const { data } = await axios.get(link);
     // console.log(data);
@@ -54,7 +54,7 @@ export const getAdminProduct = async (dispatch) => {
     };
 
     const { data } = await axios.get(
-      "http://localhost:4000/api/v1/admin/products",
+      "https://karwadenge-server.onrender.com/api/v1/admin/products",
       config
     );
 
@@ -85,7 +85,7 @@ export const createProduct = async (dispatch, productData) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/admin/products/new`,
+      `https://karwadenge-server.onrender.com/api/v1/admin/products/new`,
       productData,
       config
     );
@@ -107,7 +107,7 @@ export const createProduct = async (dispatch, productData) => {
 };
 
 // Update Product
-export const updateProduct =  async (dispatch,id, productData) => {
+export const updateProduct = async (dispatch, id, productData) => {
   try {
     dispatch(adminProductActions.updateProductRequest());
 
@@ -119,7 +119,7 @@ export const updateProduct =  async (dispatch,id, productData) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/admin/products/${id}`,
+      `https://karwadenge-server.onrender.com/api/v1/admin/products/${id}`,
       productData,
       config
     );
@@ -152,7 +152,7 @@ export const deleteProduct = async (dispatch, id) => {
     };
 
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/admin/products/${id}`,
+      `https://karwadenge-server.onrender.com/api/v1/admin/products/${id}`,
       config
     );
 
@@ -175,7 +175,7 @@ export const deleteProduct = async (dispatch, id) => {
 export const getProductDetail = async (dispatch, id) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:4000/api/v1/products/${id}`
+      `https://karwadenge-server.onrender.com/api/v1/products/${id}`
     );
 
     dispatch(
@@ -207,7 +207,7 @@ export const newReview = async (dispatch, reviewData) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/review`,
+      `https://karwadenge-server.onrender.com/api/v1/review`,
       reviewData,
       config
     );

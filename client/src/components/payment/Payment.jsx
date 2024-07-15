@@ -32,7 +32,7 @@ const Payment = () => {
 
   const handlePayment = async () => {
     try {
-      const orderUrl = 'http://localhost:4000/api/v1/payment/process';
+      const orderUrl = 'https://karwadenge-server.onrender.com/api/v1/payment/process';
       const response = await axios.post(orderUrl, { totalPrice: totalPrice });
 
       const { amount, id: order_id, currency } = response.data;
@@ -57,7 +57,7 @@ const Payment = () => {
           };
 
           console.log(order);
-          const res = await axios.post('http://localhost:4000/api/v1/order/new', order);
+          const res = await axios.post('https://karwadenge-server.onrender.com/api/v1/order/new', order);
           console.log(res);
           console.log(res.data);
           if (res) {

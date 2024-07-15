@@ -14,7 +14,7 @@ export const updateProfile = async (dispatch, userData) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/me/update`,
+      `https://karwadenge-server.onrender.com/api/v1/me/update`,
       userData,
       config
     );
@@ -47,7 +47,7 @@ export const updatePassword = async (dispatch, passwords) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/password/update`,
+      `https://karwadenge-server.onrender.com/api/v1/password/update`,
       passwords,
       config
     );

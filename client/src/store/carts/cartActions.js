@@ -3,11 +3,17 @@ import { cartsActions } from "./cartsSlice";
 import store from "../store";
 
 // Add to Cart
-export const addItemsToCart = async (dispatch, id, quantity, activeProPrice, activeProData) => {
+export const addItemsToCart = async (
+  dispatch,
+  id,
+  quantity,
+  activeProPrice,
+  activeProData
+) => {
   const { data } = await axios.get(
-    `http://localhost:4000/api/v1/products/${id}`
+    `https://karwadenge-server.onrender.com/api/v1/products/${id}`
   );
-  console.log("this is data for ", activeProData)
+  console.log("this is data for ", activeProData);
   dispatch(
     cartsActions.addToCart({
       item: {

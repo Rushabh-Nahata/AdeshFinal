@@ -50,7 +50,7 @@ export const CheckoutForm = () => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const response = await axios.post(
-      "http://localhost:4000/api/v1/payment/process",
+      "https://karwadenge-server.onrender.com/api/v1/payment/process",
       JSON.stringify(order),
       config
     );
@@ -91,27 +91,27 @@ export const CheckoutForm = () => {
 
   return (
     <div className="formContainer">
- <form onSubmit={handleSubmit} className="checkoutForm">
-      <div className="mb-3">
-        <label htmlFor="email-input">Email</label>
-        <div>
-          <input
-            value={emailInput}
-            onChange={(e) => setEmailInput(e.target.value)}
-            type="email"
-            id="email-input"
-            placeholder="johndoe@gmail.com"
-          />
+      <form onSubmit={handleSubmit} className="checkoutForm">
+        <div className="mb-3">
+          <label htmlFor="email-input">Email</label>
+          <div>
+            <input
+              value={emailInput}
+              onChange={(e) => setEmailInput(e.target.value)}
+              type="email"
+              id="email-input"
+              placeholder="johndoe@gmail.com"
+            />
+          </div>
         </div>
-      </div>
-      <PaymentElement />
-      <button type="submit" disabled={!stripe || !elements}>
-        Pay
-      </button>
-      {/* Show error message to your customers */}
-      {errorMessage && <div>{errorMessage}</div>}
-    </form>
+        <PaymentElement />
+        <button type="submit" disabled={!stripe || !elements}>
+          Pay
+        </button>
+        {/* Show error message to your customers */}
+        {errorMessage && <div>{errorMessage}</div>}
+      </form>
     </div>
-   
+
   );
 };
