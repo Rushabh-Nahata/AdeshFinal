@@ -1,0 +1,135 @@
+.services-container {
+  /* background-color: antiquewhite; */
+  text-align: center;
+  display: flex;
+  width: 90%;
+  margin: auto;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.services-box {
+  width: 7%;
+  height: 15%;
+  padding: 2rem 2rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* margin: auto; */
+}
+.services-image {
+  width: 10rem;
+  height: 10rem;
+}
+.services-image img {
+  width: 100%;
+  height: 100%;
+}
+.services-image-name {
+  font-size: 2 rem;
+  color: rgb(0, 0, 0);
+}
+
+/* CSS for the back button */
+.back-button {
+  background-color: #0074d9 !important; /* Background color */
+  color: #fff; /* Text color */
+  padding: 10px 20px; /* Padding for the button */
+  border: none; /* Remove the button border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Show pointer cursor on hover */
+  text-decoration: none; /* Remove default link underline */
+  font-size: 16px; /* Font size */
+}
+
+/* Hover effect */
+.back-button:hover {
+  background-color: #0056b3; /* Darker background color on hover */
+}
+
+.services-image-name p {
+  font-size: small;
+  /* background-color: #0056b3; */
+}
+
+.button-27 {
+  position: relative;
+  padding: 16px;
+  background: linear-gradient(0deg, #fcfcfc 0%, #f5f5f5 100%);
+  border: 6px solid transparent;
+  border-radius: 16px;
+  background-clip: padding-box;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.5),
+    1px 3px 3px 2px #fff, 0 0 0 6px #ececec;
+  border-radius: 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  transition: border 0.1s ease-in-out, padding 0.1s ease-in-out,
+    margin 0.1s ease-in-out;
+}
+.button-27:after {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: -6px;
+  right: -6px;
+  background: linear-gradient(#fff, #ededed);
+  content: "";
+  z-index: -1;
+  border-radius: 16px;
+}
+.button-27:hover {
+  border: 2px solid transparent;
+  background-image: linear-gradient(180deg, #e6e6e6 0%, #f7f7f7 100%);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.35), 0 0 0 6px #ececec;
+  padding: 20px;
+}
+.button-27:active {
+  border-top: 1px solid transparent;
+}
+
+.home-products-back-button-align {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 1rem auto;
+}
+
+/* You can add more styles as needed, such as margin, box-shadow, or text alignment. */
+
+@media screen and (max-width: 600px) {
+  .services-container {
+    /* background-color: antiquewhite; */
+    text-align: center;
+    align-items: center;
+    padding: 5vh 0;
+    display: flex;
+    /* width: 90%; */
+    margin: auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  .services-box {
+    align-items: center;
+    width: 10%;
+    height: 20%;
+    padding: 1rem 2rem;
+    /* margin: 1rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* margin: auto; */
+  }
+  .services-image {
+    width: 8rem;
+    height: 8rem;
+  }
+  .services-image img {
+    width: 100%;
+    height: 100%;
+  }
+  .services-image-name p {
+    font-size: 7px !important;
+  }
+}

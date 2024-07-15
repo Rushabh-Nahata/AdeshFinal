@@ -1,0 +1,16 @@
+.css-1oq63md-MuiPaper-root-MuiAppBar-root{
+    position:relative !important;
+}
+.cartLink{
+    position: relative;
+}
+.cartCount{
+    position: absolute;
+    top: 0;
+    right: 0px;
+    background: #f4ddbe;
+    font-size: 10px;
+    padding:  2px 5px;
+    border-radius: 100%;
+    font-weight: 600;
+}
