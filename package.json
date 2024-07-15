@@ -3,5 +3,28 @@
     "chart.js": "^4.3.0",
     "react-chartjs-2": "^5.2.0",
     "stripe": "^12.10.0"
-  }
+  },
+  "name": "shophub(karwadenge)completed",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+ "scripts": {
+   "install-server": "cd server && npm install",
+   "start-server": "cd server && node index.js",
+   "install-client": "cd client && npm install",
+   "build-client": "cd client && npm run build",
+   "start-client": "cd client && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rushabh-Nahata/AdeshFinal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rushabh-Nahata/AdeshFinal/issues"
+  },
+  "homepage": "https://github.com/Rushabh-Nahata/AdeshFinal#readme",
+  "description": ""
 }
