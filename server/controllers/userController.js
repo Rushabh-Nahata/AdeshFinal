@@ -24,22 +24,15 @@ export const registerUser = async (req, res, next) => {
       digits: true,
     });
     //Creating a user
-    const existingUser = await User.findOne({ email });
-
-    if (existingUser) {
-      return next(new ErrorHandler("User already exists", 400));
-    } else {
-      const user = await User.create({
-        name,
-        email,
-        password,
-        avatar: {
-          public_id: myCloud.public_id,
-          url: myCloud.secure_url,
-        },
-      });
-    }
-    
+    const user = await User.create({
+      name,
+      email,
+      password,
+      avatar: {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      },
+    });
 
     await TempUser.create({
       userId: user.id,
@@ -55,29 +48,41 @@ export const registerUser = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     next(err);
-}
+  }
 };
 
 export const otpVerification = async (req, res, next) => {
   try {
     const { otp } = req.body;
 
-    //Creating a user
+    // Find the temporary user by OTP
     const tempUser = await TempUser.findOne({ otp });
+
+    if (!tempUser) {
+      return next(new ErrorHandler("Invalid OTP", 400));
+    }
+
+    // Find the actual user by the userId in tempUser
     const user = await User.findById(tempUser.userId);
 
-    if (user) {
-      await User.findByIdAndUpdate(user.id, { isVerified: true });
-      await TempUser.findByIdAndDelete(tempUser.id);
+    if (!user) {
+      return next(new ErrorHandler("User not found", 404));
     }
-    //This token is create in user model
+
+    // Update the user to be verified
+    user.isVerified = true;
+    await user.save();
+
+    // Delete the temporary user record
+    await TempUser.findByIdAndDelete(tempUser.id);
+
+    // Send token to the user
     sendToken(user, 201, res);
   } catch (err) {
     console.log(err);
     next(err);
   }
 };
-
 //Login a user
 
 export const loginUser = async (req, res, next) => {
@@ -122,7 +127,7 @@ export const loginUser = async (req, res, next) => {
 export const logout = (req, res, next) => {
   try {
     // If you are using cookies for the token, clear them
-    res.clearCookie('token');
+    res.clearCookie("token");
 
     res.status(200).json({
       success: true,
