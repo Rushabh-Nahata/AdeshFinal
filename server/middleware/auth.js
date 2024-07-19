@@ -10,31 +10,35 @@ import catchAsyncErrors from "./catchAsyncErrors.js";
 
 export const isAuthenticatedUser = async (req, res, next) => {
   try {
+    const authHeader = req.headers.authorization;
 
-   const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    console.log(req.headers);
+    // Extract token from Authorization header
+    const token = authHeader.split(" ")[1];
+    console.log(token);
 
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-
-  // Extract token from Authorization header
-  const token = authHeader.split(' ')[1];
-  console
-
-   
     if (!token) {
       return next(
         new ErrorHandler("Please Login to access this resource", 401)
       );
     }
 
-    const decodedData = jwt.verify(token, process.env.JWT_SECRET);
-
-    req.user = await User.findById(decodedData.id);
-
-    next();
+    try {
+      const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = await User.findById(decodedData.id);
+      next();
+    } catch (error) {
+      if (error.name === "JsonWebTokenError") {
+        return res.status(401).json({ error: "Invalid token" });
+      }
+      return res.status(500).json({ error: "Internal server error" });
+    }
   } catch (err) {
     console.error(err);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
