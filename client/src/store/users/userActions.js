@@ -1,6 +1,11 @@
 import axios from "axios";
 import { userActions } from "../users/userSlice";
 
+const storeToken = (token) => {
+  localStorage.setItem("token", token);
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
+
 export const login = async (dispatch, email, password) => {
   try {
     dispatch(userActions.userLoginRequest());
@@ -13,14 +18,12 @@ export const login = async (dispatch, email, password) => {
     };
 
     const { data } = await axios.post(
-      `https://karwadenge-server.onrender.com/api/v1/login`,
+      `http://localhost:4000/api/v1/login`,
       { email, password },
       config
     );
 
-    const token = data.token;
-    // Store the token in localStorage
-    localStorage.setItem("token", token);
+    storeToken(data.token);
 
     dispatch(
       userActions.userLoginSuccess({
@@ -46,13 +49,11 @@ export const register = async (dispatch, userData) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.post(
-      "https://karwadenge-server.onrender.com/api/v1/register",
+      "http://localhost:4000/api/v1/register",
       userData,
       config
     );
-    const token = data.token;
-    // Store the token in localStorage
-    localStorage.setItem("token", token);
+    storeToken(data.token);
 
     dispatch(
       userActions.userRegisterSuccess({
@@ -98,10 +99,7 @@ export const loadUser = () => async (dispatch) => {
       withCredentials: true,
     };
 
-    const { data } = await axios.get(
-      "https://karwadenge-server.onrender.com/api/v1/me",
-      config
-    );
+    const { data } = await axios.get("http://localhost:4000/api/v1/me", config);
 
     dispatch(userActions.userLoadSuccess({ user: data.user }));
   } catch (error) {
@@ -124,10 +122,7 @@ export const logout = () => async (dispatch) => {
       withCredentials: true,
     };
 
-    await axios.get(
-      "https://karwadenge-server.onrender.com/api/v1/logout",
-      config
-    );
+    await axios.get("http://localhost:4000/api/v1/logout", config);
 
     console.log("Logout Loading");
 
