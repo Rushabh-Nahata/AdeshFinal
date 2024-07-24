@@ -44,7 +44,7 @@ const MyOrder = () => {
             <thead>
               <tr>
                 <th>Order ID</th>
-                <th>Status</th>
+                <th>Time</th>
                 <th>Professional Name</th>
                 <th>Professional Email</th>
                 <th>Items Qty</th>
@@ -56,7 +56,7 @@ const MyOrder = () => {
               {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.orderStatus}</td>
+                  <td>{order.paidAt}</td>
                   <td>
                     {
                       order.orderItems.map((i, idx) => (

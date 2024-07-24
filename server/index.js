@@ -37,6 +37,10 @@ app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"));
+app.use(express.static(path.join(__dirname, "client/build")));
+
+// Serve images from the 'client/src/assets' directory
+app.use("/static", express.static(path.join(__dirname, "client/src/assets")));
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.json({ limit: "10mb" }));
@@ -51,6 +55,7 @@ app.use(
   express.urlencoded({ limit: "10mb", extended: true, parameterLimit: 50000 })
 );
 app.use(fileUpload());
+
 
 /*ROUTES*/
 app.use("/api/v1", productRoutes);

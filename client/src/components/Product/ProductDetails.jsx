@@ -272,7 +272,7 @@ function ProductDetails() {
                             key={index}
                             src={i.avatar}
                             className="professionalImg"
-                            alt=""
+                            alt="prof"
                             onClick={() => setActivePro(i.id)}
                           />
                         )
